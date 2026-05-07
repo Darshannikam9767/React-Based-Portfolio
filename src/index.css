@@ -1,13 +1,121 @@
 @import "tailwindcss";
 
-body{
-  overflow-x: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  position: relative;
-  background-color: black;
-  color: white;
-  cursor: none;
+/* -------------------------------------------------------------------------- */
+/* 1. TAILWIND V4 THEME CONFIGURATION                                         */
+/* (Replaces tailwind.config.js)                                              */
+/* -------------------------------------------------------------------------- */
+@theme {
+  /* Shadcn-style Color Mapping */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Custom Purple Palette */
+  --color-purple-200: #e9d5ff;
+  --color-purple-600: #9333ea;
+  --color-purple-900: #581c87;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. CSS VARIABLE DEFINITIONS                                               */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Defaulting to a Dark Theme for a Portfolio */
+  --background: 0 0% 0%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. GLOBAL BASE STYLES                                                      */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth;
+    scroll-behavior: smooth;
+    cursor: none; /* Custom portfolio cursor */
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden m-0 p-0 w-full relative;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: none;
+  }
+
+  /* Interactive Elements */
+  a, button, input, textarea, select {
+    cursor: none;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. UTILITIES & COMPONENT CLASSES                                           */
+/* -------------------------------------------------------------------------- */
+section {
+  @apply relative w-full min-h-screen overflow-hidden;
+}
+
+.panel {
+  @apply w-full h-screen;
+}
+
+.pin-spacer {
+  height: 200vh; /* Specific for GSAP scroll pinning */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. RESPONSIVE ADJUSTMENTS                                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Restore default cursor for touch devices */
+@media (max-width: 768px) {
+  html, body, a, button, input, textarea, select {
+    cursor: auto;
+  }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+  h1 { font-size: 2.5rem !important; }
+  h2 { font-size: 2rem !important; }
+  p { font-size: 1rem !important; }
+  .panel-title { font-size: 2rem !important; }
+  .panel-desc { font-size: 1rem !important; }
 }
